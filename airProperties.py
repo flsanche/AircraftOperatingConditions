@@ -2,7 +2,6 @@
 # This object defines the classes and functions used to calculate the air properties
 
 import math
-import operatingConditions as opCond
 
 class airProperties():
     '''
@@ -29,7 +28,7 @@ class airProperties():
 
     def rho_air(self):
         # Air density in kg/m³
-        Pamb = opCond.operatingConditions.pressure(self.operatingConditions)
+        Pamb = operatingConditions.pressure(self.operatingConditions)
         return Pamb / (airProperties.R * self.zoneTemperature)
     
     def k_air(self):
