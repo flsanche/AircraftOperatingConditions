@@ -18,18 +18,17 @@ class airProperties():
     R = 287.04
 
     def __init__(self,
-                 operatingConditions: object,
+                 Pamb: float,
                  zoneTemperature: float,
                  *args,
                  **kwargs):
 
-        self.operatingConditions = operatingConditions
+        self.Pamb = Pamb
         self.zoneTemperature = zoneTemperature
 
     def rho_air(self):
         # Air density in kg/m³
-        Pamb = operatingConditions.pressure(self.operatingConditions)
-        return Pamb / (airProperties.R * self.zoneTemperature)
+        return self.Pamb / (airProperties.R * self.zoneTemperature)
     
     def k_air(self):
         # Thermal conductivity of air in W/m/K
