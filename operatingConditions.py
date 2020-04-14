@@ -52,64 +52,64 @@ class operatingConditions():
         if self.speed != 0.:
             if self.dayType == 'Extra-Hot':
                 if self.altitude <= 15000.:
-                    return operatingConditions.T_ISA + 40.
+                    return operatingConditions.T_ISA(self) + 40.
                 else:
                     if self.altitude <=35000.:
-                        return operatingConditions.T_ISA + 35.
+                        return operatingConditions.T_ISA(self) + 35.
                     else:
-                        return operatingConditions.T_ISA + 30.
+                        return operatingConditions.T_ISA(self) + 30.
             else:
                 if self.dayType == 'Hot':
                     if self.altitude <= 15000.:
-                        return operatingConditions.T_ISA + 20.
+                        return operatingConditions.T_ISA(self) + 20.
                     else:
                         if self.altitude <=35000.:
-                            return operatingConditions.T_ISA + 15.
+                            return operatingConditions.T_ISA(self) + 15.
                         else:
-                            return operatingConditions.T_ISA + 10.
+                            return operatingConditions.T_ISA(self) + 10.
                 else:
                     if self.dayType == 'Normal':
-                        return operatingConditions.T_ISA
+                        return operatingConditions.T_ISA(self)
                     else:
                         if self.dayType == 'Cold':
                             if self.altitude <= 15000.:
-                                return operatingConditions.T_ISA - 30.
+                                return operatingConditions.T_ISA(self) - 30.
                             else:
                                 if self.altitude <=35000.:
-                                    return operatingConditions.T_ISA - 10.
+                                    return operatingConditions.T_ISA(self) - 10.
                                 else:
-                                    return operatingConditions.T_ISA - 15.
+                                    return operatingConditions.T_ISA(self) - 15.
                         else:
                             if self.dayType == 'Extra-Cold':
                                 if self.altitude <= 15000.:
                                     return -55.
                                 else:
                                     if self.altitude <= 30000.:
-                                        return operatingConditions.T_ISA - 30.
+                                        return operatingConditions.T_ISA(self) - 30.
                                     else:
-                                        return operatingConditions.T_ISA - 20.
+                                        return operatingConditions.T_ISA(self) - 20.
         # Ground conditions
         else:
             if self.dayType == 'Extra-Hot':
                 if self.altitude < 15000.:
-                    return operatingConditions.T_ISA + 40.
+                    return operatingConditions.T_ISA(self) + 40.
                 else:
-                    return operatingConditions.T_ISA + 45.
+                    return operatingConditions.T_ISA(self) + 45.
             else:
                 if self.dayType == 'Hot':
                     if self.altitude < 15000.:
-                        return operatingConditions.T_ISA + 30.
+                        return operatingConditions.T_ISA(self) + 30.
                     else:
-                        return operatingConditions.T_ISA + 25.
+                        return operatingConditions.T_ISA(self) + 25.
                 else:
                     if self.dayType == 'Normal':
-                        return operatingConditions.T_ISA
+                        return operatingConditions.T_ISA(self)
                     else:
                         if self.dayType == 'Cold':
                             if self.altitude < 15000.:
-                                return operatingConditions.T_ISA - 30.
+                                return operatingConditions.T_ISA(self) - 30.
                             else:
-                                return operatingConditions.T_ISA - 5.
+                                return operatingConditions.T_ISA(self) - 5.
 
                         else:
                             if self.dayType == 'Extra-Cold':
@@ -120,4 +120,4 @@ class operatingConditions():
 
     def Ttot(self):
         # Total air temperature
-        return (1+((operatingConditions.gamma-1)/2) * self.speed**2) * (operatingConditions.Tstat+273.15) - 273.15
+        return (1+((operatingConditions.gamma-1)/2) * self.speed**2) * (operatingConditions.Tstat(self)+273.15) - 273.15
